@@ -11,7 +11,7 @@ const postRoutes = require('./server/routes/post');
 
 mongoose.connect(process.env.dbURL)
     .then(console.log("DB Connected!"))
-    .catch(error => console.log(Error));
+    .catch(error => console.log(error));
 
 app.use(express.json()); //to parse JSON bodies for express 
 
@@ -29,5 +29,5 @@ app.use(function(req, res, next) {
 app.use('/user', userRoutes); // to use any of the routes you have to enter user 
 app.use('/post', postRoutes);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
