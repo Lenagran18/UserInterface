@@ -1,4 +1,4 @@
-const About = () => {
+const Profile = () => {
     return(
         <div>
             <h1>About Us</h1>
@@ -19,9 +19,9 @@ const About = () => {
                 </div>
                 <button className="mt-4 btn-primary">Learn More</button>
             </div>
-           
+        
         </div>
     );
 }
 
-export default About;
+export default Profile;
