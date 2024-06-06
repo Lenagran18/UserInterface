@@ -44,7 +44,7 @@ async function updatePost(postId, authorId, newContent) {
 
 
 //DESTROY - delete post
-async function deletePost(postId) {
+async function deletePost(postId, authorId) {
     const post = await Post.findOne({ _id: postId, authorId: authorId });
     if(!post) {
         throw new Error("Unable to delete post")

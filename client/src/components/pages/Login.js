@@ -3,15 +3,15 @@ const Login = () => {
         <div> 
             <h1>Login</h1>
             <form>
-                <div class="mb-3">
-                    <label for="usernameInput" class="form-label">Username</label>
-                    <input type="username" class="form-control" id="usernameInput" aria-describedby="emailHelp"></input>
+                <div className="mb-3">
+                    <label htmlFor="username" className="form-label">Username</label>
+                    <input type="username" className="form-control" id="username" aria-describedby="emailHelp"></input>
                 </div>
-                <div class="mb-3">
-                    <label for="passwordInput" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="passwordInput"></input>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input type="password" className="form-control" id="password"></input>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" className="btn btn-success">Submit</button>
             </form>
         </div>
     );

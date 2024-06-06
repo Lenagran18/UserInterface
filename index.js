@@ -21,13 +21,13 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public', 'index.h
 //CORS malware 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, x-Requested-Width, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Origin", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-Width, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
 });
 
 app.use('/user', userRoutes); // to use any of the routes you have to enter user 
 app.use('/post', postRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
