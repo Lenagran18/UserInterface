@@ -5,6 +5,8 @@
 
 export async function fetchData(route = '', data = {}, methodType) {
     //TEST
+    const jsonData = JSON.stringify(data);
+    console.log(jsonData);
     console.log(`URL: http://localhost:4000${route}`);
     console.log('Data:', data);
     console.log('Method:', methodType);
@@ -14,10 +16,11 @@ export async function fetchData(route = '', data = {}, methodType) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: jsonData
     });
 
     //dealing with our response from server
+
     if (response.ok) {
         return await response.json(); //If it's okay
     } else {

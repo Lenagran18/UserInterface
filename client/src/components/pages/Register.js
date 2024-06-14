@@ -89,7 +89,7 @@ const Register = () => {
                 <div className="mb-3">
                     <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                     <input
-                        type="pconfirmPassword"
+                        type="Password"
                         className="form-control"
                         id="confirmPassword"
                         name='confirmPassword'

@@ -2,12 +2,13 @@ require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const path = require('path');
+const path = require('path'); //deals with
 
 
 //signify routes to access - require user file in routes
 const userRoutes = require('./server/routes/user');
 const postRoutes = require('./server/routes/post');
+const commentRoutes = require('./server/routes/comment');
 
 mongoose.connect(process.env.dbURL)
     .then(console.log("DB Connected!"))
@@ -18,7 +19,7 @@ app.use(express.json()); //to parse JSON bodies for express
 app.use(express.static(__dirname + "/public"));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/public', 'index.html')));
 
-//CORS malware 
+//CORS middleware
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-Width, Content-Type, Accept, Authorization");
@@ -28,6 +29,7 @@ app.use(function(req, res, next) {
 
 app.use('/user', userRoutes); // to use any of the routes you have to enter user 
 app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));

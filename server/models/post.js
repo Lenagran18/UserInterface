@@ -37,7 +37,7 @@ async function updatePost(postId, authorId, newContent) {
         );
     
     if(!post) {
-        throw Error("Cannot update post");
+        throw new Error("Cannot update post");
     }
     return post;
 }
