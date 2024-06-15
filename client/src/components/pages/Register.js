@@ -1,3 +1,4 @@
+
 import { fetchData } from "../../main.js";
 import { useState } from "react"; //Track state in a function component - takes initial state 
 //as argument & returns an array containing current state value & function that updates the state
@@ -47,7 +48,7 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <div className="form">
             <form onSubmit={onSubmit}>
             <h1>Register</h1>
                 <div className="mb-3">
@@ -98,7 +99,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <input type="submit" className="btn btn-primary" value="Register" />
+                <input type="submit" className="btn" value="Register"/>
             </form>
         </div>
     );
