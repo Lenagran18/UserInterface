@@ -45,7 +45,6 @@ h1 {
 }
 
 .btn {
-    
     background-color: #DBF4F9;
     border-color: #327583;
     color: #0f5867;
@@ -61,3 +60,14 @@ h1 {
     max-width: 500px;
     margin: 50px auto;
 }
+.form-floating {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    max-width: 500px;
+    margin: 50px auto;
+    font-style: italic;
+}
+
+    

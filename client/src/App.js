@@ -4,10 +4,12 @@ import Profile from "./components/pages/Profile.js";
 import Navbar from "./components/util/Navbar.js";
 import Login from "./components/pages/Login.js";
 import Register from "./components/pages/Register.js";
+import { UserProvider } from './Context/userContext.js';
 
 function App() {
   return (
     <div className="App">
+      <UserProvider>
       <BrowserRouter>
         <Routes>
             <Route path='/' element={ <Navbar /> }>
@@ -19,6 +21,7 @@ function App() {
             </Route>
         </Routes>
       </BrowserRouter>
+      </UserProvider>  
     </div>
   );
 }

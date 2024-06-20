@@ -1,25 +1,82 @@
+import { fetchData } from "../../main.js";
+import { useState, useContext } from "react";
+import UserContext from "../../Context/userContext.js";
+
 const Profile = () => {
+    const { user } = useContext(UserContext);
+    const authorId = user.authorId; //id:667354a0ab1d5605b0cd38ce l 123
+
+    const [post, setPost] = useState({
+        authorId: authorId,
+        postContent: ''
+    });
+
+    const [posts, setPosts] = useState([]);
+
+   
+
+    const { postContent } = post
+   
+
+    const onChange = (e) => setPost({ ...post, [e.target.name]: e.target.value }) 
+    const onSubmit = (e) => {
+  
+            e.preventDefault();
+            console.log('authorId:', post.authorId)
+            fetchData('/post/createPost', 
+            { 
+                postContent,
+                authorId: authorId
+            }, 
+            "POST")
+
+            .then((data) => {
+                console.log(data);
+                if(!data.message) {
+                   
+                    setPosts([ postContent, ...posts ]); //Add new post
+                    setPost({ postContent: '' }); //Clear text area
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        // }   
+    }   
+
     return(
-        <div>
-            <h1>About Us</h1>
-            <div className="container">
-                <hr />
-                <h2>Some facts...</h2>
-                <hr />
-                <div className="row text-primary">
-                    <div className="col bg-warning p-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div className="col">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                    <div className="col">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </div>
-                </div>
-                <button className="mt-4 btn-primary">Learn More</button>
+
+            <div className="writePost">
+                <div className="mb-3">
+                    <form onSubmit={onSubmit}>
+                    <h1>Profile</h1>
+
+                    <label htmlFor="floatingTextarea"> Create Post</label>
+                    <textarea
+                        className="form-control"
+                        placeholder="What's new..." 
+                        id="postContent"
+                        name="postContent"
+                        onChange={onChange}
+                        value={postContent}
+                        required
+                    /> 
+                <button type="submit" className="btn">Submit</button>
+            </form>
+        </div>
+            <div className="posts">
+            {/* <h2>`${username}'s Posts`</h2> */}
+            {posts.length !== 0 ? (
+                <ul>
+                    {posts.map((content, index) => (
+                        <li key={index} className="post">
+                            {content}
+                        </li>
+                    ))}
+                </ul>
+                ) : (<p>No posts yet</p>)
+            }
             </div>
-        
         </div>
     );
 }

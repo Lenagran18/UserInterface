@@ -1,22 +1,20 @@
 
 import { fetchData } from "../../main.js";
-import { useState } from "react"; //Track state in a function component - takes initial state 
+//DONT NEED import { useState } from "react"; //Track state in a function component - takes initial state 
 //as argument & returns an array containing current state value & function that updates the state
 import { useNavigate } from "react-router-dom"; //Takes user to another page once logged in
+import { useContext } from "react";
+import UserContext from "../../Context/userContext.js";
+
 
 const Register = () => {
     const navigate = useNavigate();
 
-    const [user, setUser] = useState({ //Specify what a user consists of
-        email: '',
-        username: '', 
-        password: '',
-        confirmPassword: ''
-    });
+    const{ user, updateUser } = useContext(UserContext) //destructure user and updateUser from context
 
     const { email, username, password, confirmPassword } = user;
     
-    const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
+    const onChange = (e) => updateUser(e.target.name, e.target.value)
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -39,6 +37,7 @@ const Register = () => {
             .then((data) => {
                 if (!data.message) { //If there is no error message 
                     console.log(data)
+                    updateUser("authenticated", true)
                     navigate("/Profile")
                 }
             })
@@ -54,7 +53,7 @@ const Register = () => {
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>
                     <input
-                        type="text"
+                        type="email"
                         className="form-control"
                         id="email"
                         name="email"
