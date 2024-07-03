@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     username: { type: String, unique: true, required: true }, // so that you need a unique username and password 
     email: { type: String, required: true },
     password: { type: String, required: true },
-    followers: [String], 
+    followers: [String],
     following: [String]
 });
 
@@ -19,9 +19,9 @@ const User = mongoose.model("User", userSchema);
 // CREATE a user - register 
 async function register(username, email, password) {
     const user = await getUser(username);
-    if(user) throw Error("Username already in use"); // if username is in use, throw an error
+    if (user) throw Error("Username already in use"); // if username is in use, throw an error
 
-    const salt = await bcrypt.genSalt(10); 
+    const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(password, salt);
 
     const newUser = await User.create({
@@ -40,7 +40,7 @@ async function login(username, password) { // async before function, await whene
     if (!user) throw Error("User not found"); // throw error if not 
 
     const isMatch = await bcrypt.compare(password, user.password); // compares password and hashed password
-    if(!isMatch) throw Error("Wrong password"); //check password matches 
+    if (!isMatch) throw Error("Wrong password"); //check password matches 
 
     return user._doc; // if no errors return user given 
 };
@@ -48,10 +48,10 @@ async function login(username, password) { // async before function, await whene
 //UPDATE - just password 
 async function updatePassword(id, password, newPassword) { // need to be logged in
     const user = await User.findById(id);
-    if(!user) {
+    if (!user) {
         throw Error("User not found");
     }
-    
+
     if (user.password !== password) {
         throw Error("Incorrect password");
     }
@@ -63,7 +63,7 @@ async function updatePassword(id, password, newPassword) { // need to be logged 
 
 // DESTROY - Delete a user 
 async function deleteUser(id) {
-    await User.deleteOne({"_id": id});
+    await User.deleteOne({ "_id": id });
 };
 
 // Utility functions

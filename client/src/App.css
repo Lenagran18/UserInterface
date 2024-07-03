@@ -1,7 +1,5 @@
-
-
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 body {
@@ -20,7 +18,7 @@ body {
 .navbar-toggler {
     background-color: #A1D6E2;
     color: #a9e1ee;
-    border-radius: 30px 30px 30px 2px; 
+    border-radius: 30px 30px 30px 2px;
 }
 
 /* PAGES  */
@@ -29,14 +27,13 @@ h1 {
     font-style: italic;
     padding-bottom: 50px;
     padding-top: 50px;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .mb-3 {
     text-align: left;
     font-weight: bold;
     padding-bottom: 13px;
-
 }
 
 .form-control {
@@ -60,6 +57,7 @@ h1 {
     max-width: 500px;
     margin: 50px auto;
 }
+
 .form-floating {
     padding-left: 50px;
     padding-right: 50px;
@@ -70,4 +68,6 @@ h1 {
     font-style: italic;
 }
 
-    
+.posts {
+    list-style-type: none;
+}

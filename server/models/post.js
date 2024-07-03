@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
     postContent: { type: String, required: true },
     postLikes: { type: Number, default: 0 },
-    authorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
+    authorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 const Post = mongoose.model('Post', postSchema);
@@ -21,8 +21,8 @@ async function createPost(authorId, postContent) {
 //READ - 
 
 async function readPost(postId, authorId) {
-    const post = await Post.findOne({_id: postId, authorId: authorId });
-    if(!post) {
+    const post = await Post.findOne({ _id: postId, authorId: authorId });
+    if (!post) {
         throw new Error("Unable to find post");
     }
     return post;
@@ -32,11 +32,11 @@ async function readPost(postId, authorId) {
 async function updatePost(postId, authorId, newContent) {
     const post = await Post.findOneAndUpdate(
         { '_id': postId, authorId: authorId },
-        { postContent: newContent, date: new Date() }, 
-        {new: true} 
-        );
-    
-    if(!post) {
+        { postContent: newContent, date: new Date() },
+        { new: true }
+    );
+
+    if (!post) {
         throw new Error("Cannot update post");
     }
     return post;
@@ -46,10 +46,10 @@ async function updatePost(postId, authorId, newContent) {
 //DESTROY - delete post
 async function deletePost(postId, authorId) {
     const post = await Post.findOne({ _id: postId, authorId: authorId });
-    if(!post) {
+    if (!post) {
         throw new Error("Unable to delete post")
     }
     await Post.deleteOne({ _id: postId });
 }
 
-module.exports = { Post, createPost, readPost, updatePost, deletePost};
+module.exports = { Post, createPost, readPost, updatePost, deletePost };

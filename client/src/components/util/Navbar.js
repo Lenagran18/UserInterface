@@ -1,12 +1,12 @@
-import {Outlet, Link} from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const Navbar = () => {
-    return(
-        <div> 
+    return (
+        <div>
             <nav className="navbar">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">
-                        <img src={`/images/UserInterface.jpg`}  alt="Logo" width="35" height="35" className="d-inline-block align-text-top"></img>
+                        <img src={`/images/UserInterface.jpg`} alt="Logo" width="35" height="35" className="d-inline-block align-text-top"></img>
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

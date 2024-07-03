@@ -10,8 +10,8 @@ router
     .post('/login', async (req, res) => { //use post(sent using body), get shows username and pass in URL 
         try {
             const user = await User.login(req.body.username, req.body.password);
-            res.send({...user, password: undefined}); // send keys and values fr user but dont send password 
-        } catch(error) { // catch errors found in model
+            res.send({ ...user, password: undefined }); // send keys and values fr user but dont send password 
+        } catch (error) { // catch errors found in model
             res.status(401).send({ message: error.message });
         }
     })
@@ -19,8 +19,8 @@ router
     .post('/register', async (req, res) => {
         try {
             const user = await User.register(req.body.username, req.body.email, req.body.password);
-            res.send({...user, password: undefined});
-        } catch(error) {
+            res.send({ ...user, password: undefined });
+        } catch (error) {
             res.status(401).send({ message: error.message });
         }
     })
@@ -29,7 +29,7 @@ router
         try {
             const user = await User.updatePassword(req.body.id, req.body.password, req.body.newPassword);
             res.status(200).send(user);
-        } catch(error) {
+        } catch (error) {
             res.status(401).send({ message: error.message });
         }
     })
@@ -47,4 +47,4 @@ router
 module.exports = router;
 
 
-        
+

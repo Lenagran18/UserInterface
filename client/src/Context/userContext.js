@@ -1,9 +1,9 @@
-import{ createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 const UserContext = createContext(); //Initialized a new context using creatContext
 //Provides initial state of user, update the states and props
 export function UserProvider({ children }) {
-    const[user, setUser] = useState({
+    const [user, setUser] = useState({
         email: '',
         username: '',
         password: '',
@@ -16,9 +16,9 @@ export function UserProvider({ children }) {
         setUser({ ...user, [name]: value });
     }
 
-    return(
+    return (
         <UserContext.Provider value={{ user, updateUser }}>
-            {children} 
+            {children}
         </UserContext.Provider>
     )
 }

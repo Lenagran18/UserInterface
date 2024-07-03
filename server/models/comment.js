@@ -4,19 +4,19 @@ const commentSchema = new mongoose.Schema({
     commentContent: { type: String, required: true },
     date: { type: Date, default: Date.now },
     authorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    postId: {type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: true }
+    postId: { type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: true }
 });
 
 //Model
-const Comment = mongoose.model('Comment', commentSchema); 
+const Comment = mongoose.model('Comment', commentSchema);
 
 //Functions
 //CREATE
 
 async function createComment(authorId, postId, commentContent) {
     const newComment = await Comment.create({
-        authorId: authorId, 
-        postId: postId, 
+        authorId: authorId,
+        postId: postId,
         commentContent: commentContent
     });
     return newComment
@@ -24,12 +24,12 @@ async function createComment(authorId, postId, commentContent) {
 
 //READ
 async function readComment(authorId, postId, commentId) {
-    const comment = await Comment.findOne({ 
+    const comment = await Comment.findOne({
         authorId: authorId,
         postId: postId,
         "_id": commentId
     });
-    if(!comment) {
+    if (!comment) {
         throw new Error("Unable to find comment");
     }
     return comment;
@@ -37,13 +37,13 @@ async function readComment(authorId, postId, commentId) {
 
 //UPDATE
 async function updateComment(authorId, postId, commentId, newContent) {
-    const comment = await Comment.findOneAndUpdate( 
+    const comment = await Comment.findOneAndUpdate(
         { '_id': commentId, authorId: authorId, postId: postId },
-        { commentContent: newContent, date: new Date() }, 
+        { commentContent: newContent, date: new Date() },
         { new: true }
     );
 
-    if(!comment) {
+    if (!comment) {
         throw new Error("Cannot update comment")
     }
     return comment;
@@ -51,15 +51,15 @@ async function updateComment(authorId, postId, commentId, newContent) {
 
 //DESTROY
 async function deleteComment(authorId, postId, commentId) {
-    const comment = await Comment.findOne({ 
-        _id: commentId, 
-        authorId: authorId, 
+    const comment = await Comment.findOne({
+        _id: commentId,
+        authorId: authorId,
         postId: postId
     });
-    if(!comment) {
+    if (!comment) {
         throw new Error("Unable to delete post")
     }
-    await Comment.deleteOne({_id: commentId});
+    await Comment.deleteOne({ _id: commentId });
 }
 
 module.exports = { Comment, createComment, readComment, updateComment, deleteComment }

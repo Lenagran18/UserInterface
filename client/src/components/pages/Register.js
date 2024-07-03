@@ -10,10 +10,10 @@ import UserContext from "../../Context/userContext.js";
 const Register = () => {
     const navigate = useNavigate();
 
-    const{ user, updateUser } = useContext(UserContext) //destructure user and updateUser from context
+    const { user, updateUser } = useContext(UserContext) //destructure user and updateUser from context
 
     const { email, username, password, confirmPassword } = user;
-    
+
     const onChange = (e) => updateUser(e.target.name, e.target.value)
 
     const onSubmit = (e) => {
@@ -33,7 +33,7 @@ const Register = () => {
                 password
             },
             "POST")
-            
+
             .then((data) => {
                 if (!data.message) { //If there is no error message 
                     console.log(data)
@@ -49,7 +49,7 @@ const Register = () => {
     return (
         <div className="form">
             <form onSubmit={onSubmit}>
-            <h1>Register</h1>
+                <h1>Register</h1>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>
                     <input
@@ -98,7 +98,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <input type="submit" className="btn" value="Register"/>
+                <input type="submit" className="btn" value="Register" />
             </form>
         </div>
     );
